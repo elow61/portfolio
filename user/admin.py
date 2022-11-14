@@ -5,10 +5,6 @@ from .models import User
 
 
 class UserAdmin(BaseUserAdmin):
-    # The fields to be used in displaying the User model.
-    # These override the definitions on the base UserAdmin
-    # that reference specific fields on auth.User.
-    pass
     fieldsets = (
         (None, {'fields': ('username', 'password') }),
         ('Personal info', {'fields': ('first_name', 'last_name', 'email')}),

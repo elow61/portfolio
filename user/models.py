@@ -7,6 +7,7 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     ''' Inherit AbstractUser to add new fields '''
+
     image = models.ImageField(
         verbose_name='Image',
         blank=True,
