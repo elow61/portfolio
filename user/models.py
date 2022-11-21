@@ -7,11 +7,28 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     ''' Inherit AbstractUser to add new fields '''
+    class Meta:
+        models.UniqueConstraint(
+            fields=['is_display'],
+            condition=models.Q(is_display=True),
+            name='unique_is_display'
+        )
 
+    is_display = models.BooleanField(
+        verbose_name='Is display in website',
+        default=False,
+    )
+    logo = models.ImageField(
+        verbose_name='Logo',
+        blank=True,
+        upload_to='media',
+        default='default.png'
+    )
     image = models.ImageField(
         verbose_name='Image',
+        default='default.png',
         blank=True,
-        upload_to='media'
+        upload_to='media',
     )
     description = models.TextField(
         verbose_name=_('Description'),

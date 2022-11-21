@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}</title>
+        {% block css %}
+            <link href="{% static 'css/preset.css' %}" rel="stylesheet" type="text/css" />
+            <link href="{% static 'css/header.css' %}" rel="stylesheet" type="text/css" />
+            <link href="{% static 'css/about_me.css' %}" rel="stylesheet" type="text/css" />
+        {% endblock %}
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicons/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicons/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicons/favicon-16x16.png' %}">
+        <!-- <link rel="manifest" href="{% static 'img/favicons/site.webmanifest' %}"> -->
+
+    </head>
+    <body>
+        <!-- {% block content %}{% endblock %} -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <div id="app">{{ message }}</div>
+
+        <script>
+            console.log(Vue)
+            const { createApp } = Vue
+            
+            createApp({
+                data() {
+                    return {
+                        message: 'Hello Vue!'
+                    }
+                }
+            }).mount('#app')
+        </script>
+        <!-- App -->
+        <!-- <div id="app">
+            
+            <component :is="state.view">
+                <h1>{{ state.view }}</h1>
+            </component>
+            <controls></controls>
+        </div> -->
+
+        <!-- Controls -->
+        <!-- <template id="controls">
+            <ul class="controls">
+                <li v-for="(animation, index) in state.animations" @click.prevent="setView(animation)" v-bind:class="{ 'active': animation === state.view }">
+                    {{ animation }}
+                </li>
+            </ul>
+        </template> -->
+
+        <!-- Transitions -->
+        <!-- <template id="page">
+            <transition 
+                v-on:enter="enter" 
+                v-on:leave="leave"
+                v-bind:css="false"
+                appear
+            >
+                <div class="page" v-bind:class="state.view">
+                    <div class="center">
+                        <slot></slot>
+                    </div>
+                </div>
+            </transition>
+        </template> -->
+
+        <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+        <!-- <script src="{% static 'js/main.js' %}"></script> -->
+    </body>
+</html>

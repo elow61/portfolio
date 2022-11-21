@@ -1,0 +1,18 @@
+section#about_me {
+    background-color: #28292e;
+    padding: 40px;
+}
+
+.user-description {
+    display: flex;
+    align-items: center;
+}
+
+hr {
+    width: 50px;
+    height: 1px;
+    margin: 0;
+    margin-right: 5px;
+    background: #c2b79b;
+    border: none;
+}
