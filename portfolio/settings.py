@@ -9,12 +9,12 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -127,6 +127,20 @@ USE_I18N = True
 
 USE_TZ = True
 
+# This is defined here as a do-nothing function because we can't import
+# django.utils.translation -- that module depends on the settings.
+def gettext_noop(s):
+    return s
+
+
+LOCALE_PATHS = os.path.join(os.path.dirname(__file__), 'locale'),
+LANGUAGES = (
+    ('fr', gettext_noop('French')),
+    ('en', gettext_noop('English')),
+    # ('es', gettext_noop('Spanish')),
+    # ('it', gettext_noop('Italian')),
+    # ('ar', gettext_noop('Arab')),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
