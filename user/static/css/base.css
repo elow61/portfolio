@@ -1,0 +1,85 @@
+/* Custom property */
+:root {
+    /* colors */
+    --main-dark: #121212;
+    --secondary-dark: #1e1e20;
+    --medium-dark: #292a31;
+    --light-dark: #747575;
+    --light-yellow: #c2b79b;
+    --white1: #fff;
+    --white2: #ffffffc9;
+    --light-gray: #d6d6d6;
+
+    --bg-gradient: linear-gradient(45deg, #222224, #3a3a3a00);
+    --bg-gradient-jet: linear-gradient(
+        to bottom right, 
+        hsla(240, 1%, 18%, 0.251) 0%, 
+        hsla(240, 2%, 11%, 0) 100%
+      ), hsl(240, 2%, 13%);
+
+    --bg: linear-gradient(
+        to bottom right,
+        #3f3f40 3%, 
+        #303030 97%
+    )
+    --bg-gradiant-transparent: linear-gradient(
+        45deg, rgb(0 0 0 / 7%), rgb(0 0 0 / 0%)
+    )
+
+    /* font-family */
+    --ff-poppins: 'Poppins', sans-serif;
+
+    /* font-size */
+    --fs-1: 2em;
+    --fs-2: 1em;
+    --fs-3: 17px;
+    --fs-4: 12px;
+    --fs-5: 15px;
+  
+    /* font-weight */
+    --fw-300: 300;
+    --fw-400: 400;
+    --fw-500: 500;
+    --fw-600: 600;
+
+    /* shadow */
+    --shadow-1: -4px 8px 24px rgba(0, 0, 0, 0.25);
+    --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.25);
+    --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.25);
+    --shadow-4: 0 25px 50px hsla(0, 0%, 0%, 0.15);
+    --shadow-5: 0 24px 80px hsla(0, 0%, 0%, 0.25);
+
+    /* transition */
+    --transition-1: 0.25s ease;
+    --transition-2: 0.4s ease-in-out;
+    --transition-3: 0.5s ease-in-out;
+}
+
+ion-icon {color: var(--light-yellow);}
+::-moz-selection { /* Code for Firefox */
+    background: var(--light-yellow);
+}
+::selection {
+    background: var(--light-yellow);
+}
+
+/* Generic classes */
+.text-white {
+    color: var(--white1);
+}
+
+.btn-style {
+    padding: 10px;
+    border-radius: 14px;
+    color: var(--light-yellow);
+    background-color: transparent;
+    border: 1px solid var(--medium-dark);
+    box-shadow: -4px 8px 24px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+p, a {
+    color: var(--light-gray);
+    font-weight: var(--fw-300);
+    font-size: var(--fs-4);
+}

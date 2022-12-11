@@ -1,224 +1,74 @@
-// const App = Vue.createApp({
-//     delimiters: ['[[', ']]'],
-//     data() {
-//         return {
-//             test: ''
-//         }
-//     },
-// })
+'use_strict';
 
-const { createApp } = Vue
-// State
-const state = {
-	animations: ['fade', 'slide', 'slideUp', 'zoom', 'flipX', 'flipY'],
-	view: 'slide'
+const toggleElement = function (elem) { elem.classList.toggle('active'); }
+
+const btnArrow = document.querySelector('[data-arrow-down]');
+const profile = document.querySelector("[data-aside='profile']");
+btnArrow.addEventListener('click', () => {toggleElement(profile);});
+
+// page navigation variables
+const navLinks = document.querySelectorAll('[data-nav-link]');
+const pages = document.querySelectorAll('[data-page]');
+const footer = document.querySelector('footer');
+// add event to all nav link
+for (let i = 0; i < navLinks.length; i++) {
+    navLinks[i].addEventListener('click', function () {
+        for (let i = 0; i < pages.length; i++) {
+            if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
+                pages[i].classList.add('active');
+                navLinks[i].classList.add('active');
+                window.scrollTo(0, 0);
+                if (this.innerHTML.toLowerCase() === 'contact') {
+                    footer.classList.add('active');
+                } else {
+                    footer.classList.remove('active');
+                }
+            } else {
+                pages[i].classList.remove('active');
+                navLinks[i].classList.remove('active');
+            }
+        }
+    });
 }
 
-// Controls
-const controls = Vue.component('controls', {
-  template: '#controls',
-	data: state,
-	methods: {
-		setView(animation) {
-			state.view = animation
-		}
-	}
-})
+// Manage projects
+const navProjects = document.querySelectorAll('[data-nav-project]')
+const projects = document.querySelectorAll('[data-project]')
+// const overlay = document.querySelector('section.projects .overlay');
 
-// Transitions
-const fade = Vue.component('fade', {
-  template: '#page',
-	methods: {
-		enter(el, done) {
-			TweenMax.fromTo(el, 1, {
-				autoAlpha: 0,
-				scale: 1.5,
-			}, {
-				autoAlpha: 1,
-				scale: 1,
-				transformOrigin: '50% 50%',
-				ease: Power4.easeOut,
-				onComplete: done
-			});
-		},
-		leave(el, done) {
-			TweenMax.fromTo(el, 1, {
-				autoAlpha: 1,
-				scale: 1,
-			}, {
-				autoAlpha: 0,
-				scale: 0.8,
-				ease: Power4.easeOut,
-				onComplete: done
-			});
-		}
-	}
-})
+// navProjects.forEach((list) => {
+// 	list.addEventListener('mouseover', () => {
+// 		let position = list.getBoundingClientRect();
+// 		overlay.classList.add('active');
+// 		overlay.style.left = position.x + 'px';
+// 		overlay.style.top = position.y + 'px';
+// 		overlay.style.height = position.height + 'px';
+// 		overlay.style.width = position.width + 'px';
+// 	});
+// 	list.addEventListener('mouseout', () => {
+// 		overlay.classList.remove('active');
+// 	});
+// });
 
-const slide = Vue.component('slide', {
-  template: '#page',
-	methods: {
-		enter(el, done) {
-			const tl = new TimelineMax({
-				onComplete: done
-			})
-			
-			tl.set(el, {
-				x: window.innerWidth * 1.5,
-				scale: 0.8,
-				transformOrigin: '50% 50%'
-			})
-			
-			tl.to(el, 0.5, {
-				x: 0,
-				ease: Power4.easeOut
-			});
-			
-			tl.to(el, 1, {
-				scale: 1,
-				ease: Power4.easeOut
-			});
-		},
-		leave(el, done) {
-			TweenMax.fromTo(el, 1, {
-				autoAlpha: 1
-			}, {
-				autoAlpha: 0,
-				ease: Power4.easeOut,
-				onComplete: done
-			});
-		}	
-	}
-})
 
-const slideUp = Vue.component('slideUp', {
-  template: '#page',
-	methods: {
-		enter(el, done) {
-			const tl = new TimelineMax({
-				onComplete: done
-			})
-			
-			tl.set(el, {
-				y: window.innerWidth * 1.5,
-				scale: 0.8,
-				transformOrigin: '50% 50%'
-			})
-			
-			tl.to(el, 0.5, {
-				y: 0,
-				ease: Power4.easeOut
-			});
-			
-			tl.to(el, 1, {
-				scale: 1,
-				ease: Power4.easeOut
-			});
-		},
-		leave(el, done) {
-			TweenMax.to(el, 1, {
-				y: window.innerHeight * -1.5,
-				ease: Power4.easeOut,
-				onComplete: done
-			});
-		}	
-	}
-})
+for (let i = 0; i < navProjects.length; i++) {
+    navProjects[i].addEventListener('click', function () {
+        if (this.dataset.navProject == navProjects[i].dataset.navProject) {
+            navProjects[i].classList.add('active');
+        } else {
+            navProjects[i].classList.remove('active');
+        }
+        displayProjects(nav=navProjects[i]);
+    })
+}
 
-const zoom = Vue.component('zoom', {
-  template: '#page',
-	methods: {
-		enter(el, done) {
-			const tl = new TimelineMax({
-				onComplete: done
-			})
-			
-			tl.set(el, {
-				autoAlpha: 0,
-				scale: 2,
-				transformOrigin: '50% 50%'
-			})
-			
-			tl.to(el, 1, {
-				autoAlpha: 1,
-				scale: 1,
-				ease: Power4.easeOut
-			})
-		},
-		leave(el, done) {
-			TweenMax.to(el, 1, {
-				scale: 0,
-				ease: Power4.easeOut,
-				onComplete: done
-			});
-		}	
-	}
-})
-
-const flipX = Vue.component('flipX', {
-  template: '#page',
-	methods: {
-		enter(el, done) {
-			const tl = new TimelineMax({
-				onComplete: done
-			})
-			
-			tl.set(el, {
-				autoAlpha: 0,
-				rotationX: 90,
-				transformOrigin: '50% 50%'
-			})
-			
-			tl.to(el, 1, {
-				autoAlpha: 1,
-				rotationX: 0,
-				ease: Power4.easeOut
-			})
-		},
-		leave(el, done) {
-			TweenMax.to(el, 1, {
-				scale: 0,
-				ease: Power4.easeOut,
-				onComplete: done
-			});
-		}	
-	}
-})
-
-const flipY = Vue.component('flipY', {
-  template: '#page',
-	methods: {
-		enter(el, done) {
-			const tl = new TimelineMax({
-				onComplete: done
-			})
-			
-			tl.set(el, {
-				autoAlpha: 0,
-				rotationY: 90,
-				transformOrigin: '50% 50%'
-			})
-			
-			tl.to(el, 1, {
-				autoAlpha: 1,
-				rotationY: 0,
-				ease: Power4.easeOut
-			})
-		},
-		leave(el, done) {
-			TweenMax.to(el, 1, {
-				scale: 0,
-				ease: Power4.easeOut,
-				onComplete: done
-			});
-		}	
-	}
-})
-
-// App
-const app = new Vue({
-  el: '#app',
-  data() {
-		return state
-	}
-})
+displayProjects = function (nav) {
+    for (let i = 0; i < projects.length; i++) {
+        if (nav.dataset.navProject === projects[i].dataset.project || nav.dataset.navProject === 'all') {
+            projects[i].classList.add('active');
+            window.scrollTo(0, 0);
+        } else {
+            projects[i].classList.remove('active');
+        }
+    }
+}

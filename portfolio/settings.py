@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'skill.apps.SkillConfig',
     'user.apps.UserConfig',
     'django.contrib.admin',
     'django.contrib.auth',

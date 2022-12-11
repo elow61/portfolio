@@ -1,0 +1,43 @@
+/* Preset CSS */
+* {
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-kerning: auto;
+}
+
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    color: #fff;
+    background-color: #34353a;
+    padding: 5px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Generic classes */
+.text-white {
+    color: #fff;
+}
+
+.btn-style {
+    padding: 10px;
+    color: #c2b79b;
+    background-color: transparent;
+    border: 1px solid #c2b79b;
+    cursor: pointer;
+}

@@ -8,8 +8,8 @@
         <title>{% block title %}{% endblock %}</title>
         {% block css %}
             <link href="{% static 'css/preset.css' %}" rel="stylesheet" type="text/css" />
-            <link href="{% static 'css/header.css' %}" rel="stylesheet" type="text/css" />
-            <link href="{% static 'css/about_me.css' %}" rel="stylesheet" type="text/css" />
+            <link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css" />
+            <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
         {% endblock %}
         <!-- Favicons -->
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicons/apple-touch-icon.png' %}">
@@ -19,58 +19,249 @@
 
     </head>
     <body>
-        <!-- {% block content %}{% endblock %} -->
-        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-        <div id="app">{{ message }}</div>
-
-        <script>
-            console.log(Vue)
-            const { createApp } = Vue
-            
-            createApp({
-                data() {
-                    return {
-                        message: 'Hello Vue!'
-                    }
-                }
-            }).mount('#app')
-        </script>
-        <!-- App -->
-        <!-- <div id="app">
-            
-            <component :is="state.view">
-                <h1>{{ state.view }}</h1>
-            </component>
-            <controls></controls>
-        </div> -->
-
-        <!-- Controls -->
-        <!-- <template id="controls">
-            <ul class="controls">
-                <li v-for="(animation, index) in state.animations" @click.prevent="setView(animation)" v-bind:class="{ 'active': animation === state.view }">
-                    {{ animation }}
-                </li>
-            </ul>
-        </template> -->
-
-        <!-- Transitions -->
-        <!-- <template id="page">
-            <transition 
-                v-on:enter="enter" 
-                v-on:leave="leave"
-                v-bind:css="false"
-                appear
-            >
-                <div class="page" v-bind:class="state.view">
-                    <div class="center">
-                        <slot></slot>
+        <main>
+            <aside class="profile" data-aside="profile">
+                <div class="profile-info">
+                    <figure class="avatar-content">
+                        <img src="{{ user.image.url }}" alt="Profile" width="80"/>
+                    </figure>
+                    <div class="profile-desc">
+                        <h1 class="name" title="Elodie Meunier">{{ user.first_name }} {{ user.last_name }}</h1>
+                        <h2>{{ user.short_description }}</h2>
                     </div>
+                    <ion-icon class="btn-arrow" data-arrow-down name="chevron-down-outline" size="large"></ion-icon>
                 </div>
-            </transition>
-        </template> -->
+                <div data-more-info class="profile-detail">
+                    <hr class="separator"/>
+                    <div class="info-box">
+                        <figure>
+                            <ion-icon name="mail-outline"></ion-icon>
+                        </figure>
+                        <div>
+                            <h5>Email</h5>
+                            <a href="mailto:{{ user.professional_email }}" target="_blank">{{ user.professional_email }}</a>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <figure>
+                            <ion-icon name="calendar-outline"></ion-icon>
+                        </figure>
+                        <div>
+                            <h5>Birthday</h5>
+                            <p>{{ user.birthday }}</p>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <figure>
+                            <ion-icon name="location-outline"></ion-icon>
+                        </figure>
+                        <div>
+                            <h5>Location</h5>
+                            <p>{{ user.location }}</p>
+                        </div>
+                    </div>
+                    <hr class="separator"/>
+                    <ul class="social-media-list">
+                        <li>
+                            <a href="{{ user.github_link }}" target="_blank">
+                                <ion-icon data-github name="logo-github"></ion-icon>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ user.linkedin_link }}" target="_blank">
+                                <ion-icon data-linkedin name="logo-linkedin"></ion-icon>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+            <div class="main">
+                <header id="main-header">
+                    <nav>
+                        <ul>
+                            <li data-nav-link class="active">About</li>
+                            <li data-nav-link>Experience</li>
+                            <li data-nav-link>Projects</li>
+                            <li data-nav-link>Contact</li>
+                        </ul>
+                    </nav> 
+                </header>
+                <section class="about active" data-page="about">
+                    {% include 'skills.html' %}
+                </section>
+                <section class="experience" data-page="experience">
+                    <article>
+                        <header>
+                            <h2>Resume</h2>
+                        </header>
+                        <div class="section-exp">
+                            <div class="title-exp">
+                                <figure>
+                                    <ion-icon name="book-outline"></ion-icon>
+                                </figure>
+                                <h3>Education</h3>
+                            </div>
+                            <ol class="timeline">
+                                <li class="timeline-item">
+                                    <h4>Python App Developer</h4>
+                                    <span>2019 - 2021</span>
+                                    <p class="timeline-text">
+                                        Lorem ipsum.....My job is to build your website so that it is functional
+                                        My job is to build your website so that it is functional 
+                                    </p>
+                                </li>
+                                <li class="timeline-item">
+                                    <h4>Web App Developer</h4>
+                                    <span>2018 - 2019</span>
+                                    <p class="timeline-text">
+                                        Lorem ipsum.....My job is to build your website so that it is functional
+                                        My job is to build your website so that it is functional 
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="section-exp">
+                            <div class="title-exp">
+                                <figure>
+                                    <ion-icon name="book-outline"></ion-icon>
+                                </figure>
+                                <h3>Experience</h3>
+                            </div>
+                            <ol class="timeline">
+                                <li class="timeline-item">
+                                    <h4>Python App Developer</h4>
+                                    <span>2019 - 2021</span>
+                                    <p class="timeline-text">
+                                        Lorem ipsum.....My job is to build your website so that it is functional
+                                        My job is to build your website so that it is functional 
+                                    </p>
+                                </li>
+                                <li class="timeline-item">
+                                    <h4>Python App Developer</h4>
+                                    <span>2021 - Present</span>
+                                    <p class="timeline-text">
+                                        Lorem ipsum.....My job is to build your website so that it is functional
+                                        My job is to build your website so that it is functional 
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+                    </article>
+                </section>
+                <section class="projects" data-page="projects">
+                    <article>
+                        <header>
+                            <h2>Projects</h2>
+                            <nav>
+                                <div class="overlay"></div>
+                                <ul>
+                                    <li class="active" data-nav-project="all">All</li>
+                                    <li data-nav-project="web">Web development</li>
+                                    <li data-nav-project="odoo">Odoo development</li>
+                                </ul>
+                            </nav>
+                        </header>
+                        <ul class="container-projects">
+                            <li data-project="odoo" class="project-box active">
+                                <figure>
+                                    <img src="assets/img/projects/miniature-scanner-deliveries.png" alt="project"/>
+                                    <figcaption>
+                                        <h4>Odoo development</h4>
+                                        <div class="project-link">
+                                            <a href="https://elow61.github.com">
+                                                <ion-icon name="code-slash-outline"></ion-icon>
+                                            </a>
+                                            <a href="#">
+                                                <ion-icon name="eye-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </li>
+                            <li data-project="web" class="project-box active">
+                                <figure>
+                                    <img src="assets/img/projects/miniature-yousign.png" alt="project"/>
+                                    <figcaption>
+                                        <h4>Web development</h4>
+                                        <div class="project-link">
+                                            <a href="https://elow61.github.com">
+                                                <ion-icon name="code-slash-outline"></ion-icon>
+                                            </a>
+                                            <a href="#">
+                                                <ion-icon name="eye-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </li>
+                            <li data-project="web" class="project-box active">
+                                <figure>
+                                    <img src="assets/img/projects/project-1.jpeg" alt="project"/>
+                                    <figcaption>
+                                        <h4>Web development</h4>
+                                        <div class="project-link">
+                                            <a href="https://elow61.github.com">
+                                                <ion-icon name="code-slash-outline"></ion-icon>
+                                            </a>
+                                            <a href="#">
+                                                <ion-icon name="eye-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </li>
+                            <li data-project="odoo" class="project-box active">
+                                <figure>
+                                    <img src="assets/img/projects/project-1.jpeg" alt="project"/>
+                                    <figcaption>
+                                        <h4>Odoo development</h4>
+                                        <div class="project-link">
+                                            <a href="https://elow61.github.com">
+                                                <ion-icon name="code-slash-outline"></ion-icon>
+                                            </a>
+                                            <a href="#">
+                                                <ion-icon name="eye-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </li>
+                        </ul>
+                    </article>
+                </section>
+                <section class="contact" data-page="contact">
+                    <article>
+                        <header>
+                            <h2>Contact me</h2>
+                        </header>
+                    </article>
+                    <div class="map" style="width: 100%">
+                        <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=300&amp;hl=en&amp;q=Le%20Mans,%20France+(My%20Business%20Name)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/distance-area-calculator.html">
+                            area maps</a>
+                        </iframe>
+                    </div>
+                    <form action="">
+                        <h3>Contact form</h3>
+                        <div class="inputs">
+                            <input type="text" class="form-input" placeholder="Lastname Firstname" required>
+                            <input type="email" name="email" id="email" class="form-input" placeholder="Email" required>
+                        </div>
+                        <textarea name="message" id="message" cols="30" rows="10" class="form-input" placeholder="Your message." required></textarea>
+                        <button type="submit" class="btn-style">
+                            Send message
+                        </button> 
+                    </form>
+                </section>
+                <footer>
+                    <h3>Thanks for your visit!</h3>
+                    <img src="assets/img/profile-ok.png" alt="Memoji">
+                </footer>
+            </div>
+        </main>
 
-        <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
-        <!-- <script src="{% static 'js/main.js' %}"></script> -->
+        <!-- scripts -->
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="{% static 'js/main.js' %}"></script>
     </body>
 </html>

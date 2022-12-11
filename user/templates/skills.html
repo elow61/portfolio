@@ -1,0 +1,84 @@
+{% load i18n %}
+<article class="article-presentation">
+    <header>
+        <h2>About me</h2>
+    </header>
+    <p>{{ user.description }}</p>
+</article>
+<article class="article-skills">
+    <div class="title-skills">
+        <h3>What I'm doing</h3>
+    </div>
+    <ul>
+        <p>{{ user.skill_set }}</p>
+        {% for skill in user.skill_set.all %}
+            <li class="skill-box">
+                <figure>
+                    <img src="{{ skill.image.url }}" alt="Logo {{ skill.name }}">
+                </figure>
+                <div class="skill-details">
+                    <h4>{{ skill.name }}</h4>
+                    <p>{{ skill.description }}</p>
+                </div>
+            </li>
+        {% endfor %}
+
+        <!-- <li class="skill-box">
+            <figure>
+                <img src="assets/img/odoo.png" alt="logo Odoo"/>
+            </figure>
+            <div class="skill-details">
+                <h4>Odoo</h4>
+                <p>
+                    Development on Odoo ERP to Odoo ERP to ...
+                    Development on Odoo ERP to Odoo ERP to ...
+                    Development on Odoo ERP to Odoo ERP to ...
+                    Development on Odoo ERP to Odoo ERP to ...
+                    Development on Odoo ERP to Odoo ERP to ...
+                </p>
+            </div>
+        </li> -->
+        <!-- <li class="skill-box">
+            <figure>
+                <img src="assets/img/python.png" alt="logo Python"/>
+            </figure>
+            <div class="skill-details">
+                <h4>Python</h4>
+                <p>
+                    Development on Odoo ERP to Odoo ERP to ...
+                    Development on Odoo ERP to Odoo ERP to ...
+                    Development on Odoo ERP to Odoo ERP to ...
+                    Development on Odoo ERP to Odoo ERP to ...
+                    Development on Odoo ERP to Odoo ERP to ...
+                </p>
+            </div>
+        </li> -->
+        <!-- <li class="skill-box">
+            <figure>
+                <img src="assets/img/javascript.png" alt="logo Javascript"/>
+            </figure>
+            <div class="skill-details">
+                <h4>JavaScript</h4>
+                <p>Development on Odoo ERP to ...</p>
+            </div>
+        </li> -->
+        <!-- <li class="skill-box">
+            <figure>
+                <img src="assets/img/postgresql.png" alt="logo PostgreSQL"/>
+            </figure>
+            <div class="skill-details">
+                <h4>PostgreSQL</h4>
+                <p>Development on Odoo ERP to ...</p>
+            </div>
+        </li> -->
+        <!-- <li class="skill-box">
+            <figure>
+                <img src="assets/img/django.png" alt="logo Django"/>
+            </figure>
+            <div class="skill-details">
+                <h4>Django</h4>
+                <p>Development on Odoo ERP to ...</p>
+            </div>
+        </li> -->
+    </ul>
+</article>
