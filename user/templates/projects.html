@@ -1,0 +1,33 @@
+<article>
+    <header>
+        <h2>Projects</h2>
+        <nav>
+            <div class="overlay"></div>
+            <ul>
+                {% for categ in categories %}
+                    <li data-nav-project="{{ categ.technical_name }}">{{ categ.name }}</li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+    <ul class="container-projects">
+        {% for project in user.project_set.all %}
+            <li data-project="{{ project.category_id.name }}" class="project-box">
+                <figure>
+                    <img src="{{ project.image.url }}" alt="project {{ project.name }}"/>
+                    <figcaption>
+                        <h4>Odoo development</h4>
+                        <div class="project-link">
+                            <a href="{{ project.github_link }}">
+                                <ion-icon name="code-slash-outline"></ion-icon>
+                            </a>
+                            <a href="{{ project.demo_link }}">
+                                <ion-icon name="eye-outline"></ion-icon>
+                            </a>
+                        </div>
+                    </figcaption>
+                </figure>
+            </li>
+        {% endfor %}
+    </ul>
+</article>

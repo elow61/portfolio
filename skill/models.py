@@ -13,7 +13,6 @@ class Skill(models.Model):
     )
     user = models.ForeignKey(
         to=User,
-        related_name='user',
         on_delete=models.CASCADE,
     )
     description = models.TextField(

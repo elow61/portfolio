@@ -1,0 +1,40 @@
+{% load i18n %}
+<article>
+    <header>
+        <h2>Resume</h2>
+    </header>
+    <div class="section-exp">
+        <div class="title-exp">
+            <figure>
+                <ion-icon name="book-outline"></ion-icon>
+            </figure>
+            <h3>Education</h3>
+        </div>
+        <ol class="timeline">
+            {% for educ in educations %}
+                <li class="timeline-item">
+                    <h4>{{ educ.name }}</h4>
+                    <span>{{ educ.period }}</span>
+                    <p class="timeline-text">{{ educ.description }}</p>
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
+    <div class="section-exp">
+        <div class="title-exp">
+            <figure>
+                <ion-icon name="book-outline"></ion-icon>
+            </figure>
+            <h3>Experience</h3>
+        </div>
+        <ol class="timeline">
+            {% for exp in experiences %}
+                <li class="timeline-item">
+                    <h4>{{ exp.name }}</h4>
+                    <span>{{ exp.period }}</span>
+                    <p class="timeline-text">{{ exp.description }}</p>
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
+</article>

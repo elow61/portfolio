@@ -12,12 +12,11 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Skill',
+            name='ProjectCategory',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=70, unique=True)),
-                ('description', models.TextField(default='Define a description for this skill.', help_text='The description about the current skill.', verbose_name='Description')),
-                ('image', models.ImageField(blank=True, default='default.png', upload_to='media', verbose_name='Image')),
+                ('name', models.CharField(max_length=40, unique=True)),
+                ('technical_name', models.CharField(max_length=10, unique=True, verbose_name='Technical name')),
             ],
         ),
     ]
