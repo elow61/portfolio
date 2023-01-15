@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2022 Elodie Meunier
+# Copyright 2023 Elodie Meunier
 from django.contrib import admin
 from .models import Experience
+from modeltranslation.admin import TranslationAdmin
 
-admin.site.register(Experience)
+
+class ExperienceAdmin(TranslationAdmin):
+    pass
+
+admin.site.register(Experience, ExperienceAdmin)

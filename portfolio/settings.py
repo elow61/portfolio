@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+from django.utils.translation import gettext_lazy as _
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -36,6 +37,9 @@ INSTALLED_APPS = [
     'experience.apps.ExperienceConfig',
     'skill.apps.SkillConfig',
     'user.apps.UserConfig',
+    'admin_interface',
+    'colorfield',
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'rosetta',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
@@ -119,25 +125,22 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
+LANGUAGE_CODE = 'en'
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
 
-# This is defined here as a do-nothing function because we can't import
-# django.utils.translation -- that module depends on the settings.
-def gettext_noop(s):
-    return s
+# # This is defined here as a do-nothing function because we can't import
+# # django.utils.translation -- that module depends on the settings.
+# def gettext_noop(s):
+#     return s
 
 
 LOCALE_PATHS = os.path.join(os.path.dirname(__file__), 'locale'),
 LANGUAGES = (
-    ('fr', gettext_noop('French')),
-    ('en', gettext_noop('English')),
-    # ('es', gettext_noop('Spanish')),
+    ('fr', _('French')),
+    ('en', _('English')),
     # ('it', gettext_noop('Italian')),
     # ('ar', gettext_noop('Arab')),
 )
