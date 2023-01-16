@@ -5,6 +5,34 @@ body {
     font-family: var(--ff-poppins);
     margin-bottom: 10px;
 }
+.alert {
+    padding: 20px;
+    background-color: var(--secondary-dark);
+    color: white;
+    border-radius: 15px;
+}
+.message {
+    box-shadow: -4px 8px 24px rgba(0, 0, 0, 0.25);
+}
+.alert.alert-success {
+    color: var(--light-yellow);
+}
+.alert.alert-danger {
+    color: #b2837f;
+}
+.closebtn {
+    margin-left: 15px;
+    color: var(--light-yellow);
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.closebtn:hover {
+    color: black;
+}
 .div-header {
     display: flex;
     align-items: center;
@@ -371,21 +399,23 @@ section h2::after {
     gap: 15px;
     background: none;
 }
-.form-input {
+/* .form-input {
     outline: none;
     color: var(--light-dark);
-}
-.form-input:focus {
+} */
+.contact input:focus, textarea:focus {
     border-color: var(--light-yellow);
 }
 .contact .inputs {
     display: grid;
     gap: 15px;
 }
-.form-input:focus:invalid {
+.contact input:focus:invalid, textarea:focus:invalid {
     border-color: var(--light-yellow);
 }
 .contact form input {
+    outline: none;
+    color: var(--light-dark);
     background-color: transparent;
     padding: 10px;
     border-radius: 10px;
@@ -393,6 +423,8 @@ section h2::after {
     box-shadow: -4px 8px 24px rgba(0, 0, 0, 0.25);
 }
 .contact form textarea {
+    outline: none;
+    color: var(--light-dark);
     background-color: transparent;
     padding: 10px;
     border-radius: 10px;
@@ -433,7 +465,7 @@ footer img {
 @media (min-width: 580px) {
     .social-media-list ion-icon {font-size: 20px !important;}
     footer {margin-bottom: 50px;}
-    main {
+    main, .message {
         width: 520px;
         margin-inline: auto;
     }
@@ -448,10 +480,8 @@ footer img {
         color: var(--light-gray);
         font-weight: var(--fw-300);
     }
-    main {
-        width: 700px;
-        margin-inline: auto;
-    }
+    main, .message {width: 700px;}
+    main {margin-inline: auto;}
     section {padding: 25px;}
     .social-media-list {gap: 20px;}
     .social-media-list ion-icon {font-size: 25px !important;}
@@ -466,8 +496,8 @@ footer img {
 }
 
 @media (min-width: 1024px) {
+    main, .message {width: 900px;}
     main {
-        width: 900px;
         position: relative;
         margin-inline: auto;
     }
@@ -505,8 +535,8 @@ footer img {
 }
 
 @media (min-width: 1250px) {
+    main, .message {width: 1200px;}
     main {
-        width: 1200px;
         margin-inline: auto;
         display: flex;
         gap: 10px;
