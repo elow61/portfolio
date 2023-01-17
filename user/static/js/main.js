@@ -14,11 +14,11 @@ const footer = document.querySelector('footer');
 for (let i = 0; i < navLinks.length; i++) {
     navLinks[i].addEventListener('click', function () {
         for (let i = 0; i < pages.length; i++) {
-            if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
+            if (this.dataset.link === pages[i].dataset.page) {
                 pages[i].classList.add('active');
                 navLinks[i].classList.add('active');
                 window.scrollTo(0, 0);
-                if (this.innerHTML.toLowerCase() === 'contact') {
+                if (this.dataset.link === 'contact') {
                     footer.classList.add('active');
                 } else {
                     footer.classList.remove('active');
@@ -30,17 +30,6 @@ for (let i = 0; i < navLinks.length; i++) {
         }
     });
 }
-
-// Display languages
-// const navLanguages = document.querySelector('#list-lang-container');
-// const buttonLang = document.getElementById('button-translation');
-
-// buttonLang.addEventListener('mouseover', function(event) {
-//     toggleElement(navLanguages);
-// }, false);
-// buttonLang.addEventListener('mouseout', function(event) {
-//     toggleElement(navLanguages);
-// }, false);
 
 // Manage projects
 const navProjects = document.querySelectorAll('[data-nav-project]')

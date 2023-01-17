@@ -31,25 +31,20 @@ for (let i = 0; i < navLinks.length; i++) {
     });
 }
 
+// Display languages
+// const navLanguages = document.querySelector('#list-lang-container');
+// const buttonLang = document.getElementById('button-translation');
+
+// buttonLang.addEventListener('mouseover', function(event) {
+//     toggleElement(navLanguages);
+// }, false);
+// buttonLang.addEventListener('mouseout', function(event) {
+//     toggleElement(navLanguages);
+// }, false);
+
 // Manage projects
 const navProjects = document.querySelectorAll('[data-nav-project]')
 const projects = document.querySelectorAll('[data-project]')
-// const overlay = document.querySelector('section.projects .overlay');
-
-// navProjects.forEach((list) => {
-// 	list.addEventListener('mouseover', () => {
-// 		let position = list.getBoundingClientRect();
-// 		overlay.classList.add('active');
-// 		overlay.style.left = position.x + 'px';
-// 		overlay.style.top = position.y + 'px';
-// 		overlay.style.height = position.height + 'px';
-// 		overlay.style.width = position.width + 'px';
-// 	});
-// 	list.addEventListener('mouseout', () => {
-// 		overlay.classList.remove('active');
-// 	});
-// });
-
 
 for (let i = 0; i < navProjects.length; i++) {
     navProjects[i].addEventListener('click', function () {

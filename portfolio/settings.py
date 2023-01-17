@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
-    'rosetta',
 ]
 
 MIDDLEWARE = [
@@ -132,18 +131,12 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# # This is defined here as a do-nothing function because we can't import
-# # django.utils.translation -- that module depends on the settings.
-# def gettext_noop(s):
-#     return s
+SITE_ROOT = os.path.dirname(os.path.realpath(__name__))
+LOCALE_PATHS = (os.path.join(SITE_ROOT, 'locale'),)
 
-
-LOCALE_PATHS = os.path.join(os.path.dirname(__file__), 'locale'),
 LANGUAGES = (
     ('fr', _('French')),
     ('en', _('English')),
-    # ('it', gettext_noop('Italian')),
-    # ('ar', gettext_noop('Arab')),
 )
 
 # Static files (CSS, JavaScript, Images)

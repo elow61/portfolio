@@ -58,7 +58,7 @@
                             <ion-icon name="calendar-outline"></ion-icon>
                         </figure>
                         <div>
-                            <h5>Birthday</h5>
+                            <h5>{% translate 'Birthday' %}</h5>
                             <p>{{ user.birthday }}</p>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                             <ion-icon name="location-outline"></ion-icon>
                         </figure>
                         <div>
-                            <h5>Location</h5>
+                            <h5>{% translate 'Location' %}</h5>
                             <p>{{ user.location }}</p>
                         </div>
                     </div>
@@ -111,10 +111,10 @@
                                     </div> 
                                 </form>
                             </div>
-                            <li data-nav-link class="active">About</li>
-                            <li data-nav-link>Experience</li>
-                            <li data-nav-link>Projects</li>
-                            <li data-nav-link>Contact</li>
+                            <li data-nav-link data-link="about" class="active">{% translate 'About' %}</li>
+                            <li data-nav-link data-link="experience">{% translate 'Experience' %}</li>
+                            <li data-nav-link data-link="projects">{% translate 'Projects' %}</li>
+                            <li data-nav-link data-link="contact">Contact</li>
                         </ul>
                     </nav> 
                 </header>
@@ -131,7 +131,7 @@
                     {% include 'contact_form.html' %}
                 </section>
                 <footer>
-                    <h3>Thanks for your visit!</h3>
+                    <h3>{% translate 'Thanks for your visit!' %}</h3>
                     <img src="assets/img/profile-ok.png" alt="Memoji">
                 </footer>
             </div>
