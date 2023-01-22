@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# Copyright 2022 Elodie Meunier
 from django.apps import AppConfig
 
 

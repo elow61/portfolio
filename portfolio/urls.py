@@ -26,9 +26,9 @@ urlpatterns = i18n_patterns(
     path('', include('user.urls', namespace='user')),
 )
 
-if 'rosetta' in settings.INSTALLED_APPS:
-    urlpatterns += [path('rosetta/', include('rosetta.urls'))]
-
 if settings.DEBUG:
-	import debug_toolbar
-	urlpatterns = [path('__debug__/', include(debug_toolbar.urls))] + urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    import debug_toolbar
+
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls))
+    ] + urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
