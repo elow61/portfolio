@@ -6,14 +6,18 @@
             <div class="overlay"></div>
             <ul>
                 {% for categ in categories %}
-                    <li data-nav-project="{{ categ.technical_name }}">{{ categ.name }}</li>
+                    {% if categ.technical_name == 'all'%}
+                        <li data-nav-project="{{ categ.technical_name }}" class="active">{{ categ.name }}</li>
+                    {% else %}
+                        <li data-nav-project="{{ categ.technical_name }}">{{ categ.name }}</li>
+                    {% endif %}
                 {% endfor %}
             </ul>
         </nav>
     </header>
     <ul class="container-projects">
         {% for project in user.project_set.all %}
-            <li data-project="{{ project.category_id.technical_name }}" class="project-box">
+            <li data-project="{{ project.category_id.technical_name }}" class="project-box active">
                 <figure>
                     <img src="{{ project.image.url }}" alt="project {{ project.name }}"/>
                     <figcaption>

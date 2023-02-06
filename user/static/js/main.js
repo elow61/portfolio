@@ -1,12 +1,21 @@
 'use_strict';
 
+/**
+ * Display or hide an element on HTML DOM by using the class 'active'
+ * @param {*} elem The element to display or hide
+ */
 const toggleElement = function (elem) { elem.classList.toggle('active'); }
 
+/**
+ * Manage the display aside profile
+ */
 const btnArrow = document.querySelector('[data-arrow-down]');
 const profile = document.querySelector("[data-aside='profile']");
 btnArrow.addEventListener('click', () => {toggleElement(profile);});
 
-// page navigation variables
+/**
+ * Manage the main menu and display the different sections
+ */
 const navLinks = document.querySelectorAll('[data-nav-link]');
 const pages = document.querySelectorAll('[data-page]');
 const footer = document.querySelector('footer');
@@ -39,20 +48,27 @@ for (let i = 0; i < navProjects.length; i++) {
     navProjects[i].addEventListener('click', function () {
         if (this.dataset.navProject == navProjects[i].dataset.navProject) {
             navProjects[i].classList.add('active');
-        } else {
-            navProjects[i].classList.remove('active');
         }
         displayProjects(nav=navProjects[i]);
     })
 }
-
+/**
+ * Display projects according to the nav link clicked
+ * @param {object} nav - nav (project category) clicked
+ */
 displayProjects = function (nav) {
     for (let i = 0; i < projects.length; i++) {
+        // Manage projects
         if (nav.dataset.navProject === projects[i].dataset.project || nav.dataset.navProject === 'all') {
             projects[i].classList.add('active');
             window.scrollTo(0, 0);
         } else {
             projects[i].classList.remove('active');
+        }
+        // Manage nav projects
+        anotherNav = document.querySelectorAll('[data-nav-project]:not([data-nav-project="' + nav.dataset.navProject + '"])');
+        for (let i = 0; i < anotherNav.length; i++) {
+            anotherNav[i].classList.remove('active');
         }
     }
 }
